@@ -99,6 +99,23 @@
     footer a:hover {
       color: white;
     }
+
+  .img-fixed-size {
+    height: 550px; /* Adjust height as needed */
+    width: 100%;
+    object-fit: cover; /* Ensures images fill space without stretching */
+  }
+
+  .img-news {
+    height: 250px;
+    width: 100%;
+    object-fit: cover;
+  }
+  
+  .read-more-btn:hover {
+    background-color: #212529;
+    color: white;
+  }
   </style>
 </head>
 <body>
@@ -115,7 +132,6 @@
   <div class="head container">
     <div class="head-txt">
      <p>Welcome, and thank you for visiting my website!</p>
-
     </div>
     <div class="sing_in_up">
       <!-- <a href="#">SIGN IN</a>
@@ -195,30 +211,47 @@
 <section id="collection" class="py-5 bg-light">
   <div class="collections container">
     <div class="row g-4">
+      <!-- Clothing Card -->
       <div class="col-md-4">
-        <div class="card border-0">
-          <img src="https://i.postimg.cc/Xqmwr12c/clothing.webp" class="card-img-top" alt="Clothing">
-          <div class="card-body text-center">
+        <div class="card border-0 h-100">
+          <img 
+            src="https://i.pinimg.com/736x/2f/19/38/2f19384a1b0b2a8f610b4d518e2f6bfd.jpg" 
+            class="card-img-top img-fixed-size" 
+            alt="Clothing"
+          >
+          <div class="card-body text-center d-flex flex-column">
             <h5 class="card-title">Clothing Collections</h5>
-            <a href="clothing.html" class="btn btn-outline-dark">SHOP NOW</a>
+            <a href="clothing.html" class="btn btn-outline-dark mt-auto">SHOP NOW</a>
           </div>
         </div>
       </div>
+
+      <!-- Shoes Card -->
       <div class="col-md-4">
-        <div class="card border-0">
-          <img src="https://i.postimg.cc/8CmBZH5N/shoes.webp" class="card-img-top" alt="Shoes">
-          <div class="card-body text-center">
+        <div class="card border-0 h-100">
+          <img 
+            src="https://i.postimg.cc/8CmBZH5N/shoes.webp" 
+            class="card-img-top img-fixed-size" 
+            alt="Shoes"
+          >
+          <div class="card-body text-center d-flex flex-column">
             <h5 class="card-title">Shoes Spring</h5>
-            <a href="#sellers" class="btn btn-outline-dark">SHOP NOW</a>
+            <a href="#sellers" class="btn btn-outline-dark mt-auto">SHOP NOW</a>
           </div>
         </div>
       </div>
+
+      <!-- Jewelry Card -->
       <div class="col-md-4">
-        <div class="card border-0">
-          <img src="https://i.postimg.cc/MHv7KJYp/access.webp" class="card-img-top" alt="Accessories">
-          <div class="card-body text-center">
-            <h5 class="card-title">Accessories</h5>
-            <a href="jewelry.html" class="btn btn-outline-dark">SHOP NOW</a>
+        <div class="card border-0 h-100">
+          <img 
+            src="https://magzoid.com/wp-content/uploads/2023/03/blue-nile-file-jewelry.jpg" 
+            class="card-img-top img-fixed-size" 
+            alt="Jewelry"
+          >
+          <div class="card-body text-center d-flex flex-column">
+            <h5 class="card-title">Jewelry</h5>
+            <a href="jewelry.html" class="btn btn-outline-dark mt-auto">SHOP NOW</a>
           </div>
         </div>
       </div>
@@ -265,24 +298,127 @@
     <div class="text-center mb-5">
       <p class="text-uppercase text-muted">LATEST NEWS</p>
       <h2>Fashion New Trends</h2>
+      <p class="lead">Discover the latest in women's fashion trends and style tips</p>
     </div>
     <div class="row g-4">
       <!-- News 1 -->
       <div class="col-md-4">
-        <div class="card border-0 h-100">
-          <img src="https://i.postimg.cc/2y6wbZCm/news1.jpg" class="card-img-top" alt="News">
-          <div class="card-body">
-            <p class="text-muted"><i class='bx bxs-calendar'></i> 12 February 2022</p>
-            <h4>What Curling Irons Are The Best Ones</h4>
-            <a href="https://www.vogue.com/article/best-curling-irons" target="_blank" class="btn btn-link ps-0">Read More</a>
+        <div class="card border-0 h-100 shadow-sm">
+          <img src="https://i.postimg.cc/2y6wbZCm/news1.jpg" class="card-img-top img-news" alt="Curling Irons">
+          <div class="card-body d-flex flex-column">
+            <div class="d-flex justify-content-between mb-2">
+              <span class="badge bg-warning text-dark">Hair</span>
+              <span class="text-muted"><i class='bx bxs-calendar'></i> Feb 12, 2022</span>
+            </div>
+            <h4 class="mb-3">What Curling Irons Are The Best Ones</h4>
+            <p class="text-muted mb-4">Discover the top-rated curling irons for salon-quality waves at home.</p>
+            <div class="mt-auto">
+              <button class="btn btn-outline-dark read-more-btn" data-bs-toggle="modal" data-bs-target="#newsModal" 
+                data-title="What Curling Irons Are The Best Ones"
+                data-content="Our beauty experts tested 25 curling irons to find the best options for every hair type. The winning wand creates perfect curls that last all day without damaging your hair. Key features to look for include adjustable temperature settings, ceramic plates, and a swivel cord."
+                data-image="https://i.postimg.cc/2y6wbZCm/news1.jpg">
+                Read More
+              </button>
+            </div>
           </div>
         </div>
       </div>
-      <!-- Repeat for other news items -->
+      
+      <!-- News 2 -->
+      <div class="col-md-4">
+        <div class="card border-0 h-100 shadow-sm">
+          <img src="https://i.postimg.cc/9fV7QjJ9/news2.jpg" class="card-img-top img-news" alt="Spring Trends">
+          <div class="card-body d-flex flex-column">
+            <div class="d-flex justify-content-between mb-2">
+              <span class="badge bg-success">Trends</span>
+              <span class="text-muted"><i class='bx bxs-calendar'></i> Mar 5, 2022</span>
+            </div>
+            <h4 class="mb-3">Spring 2023 Must-Have Fashion Trends</h4>
+            <p class="text-muted mb-4">The top 10 trends you'll see everywhere this season.</p>
+            <div class="mt-auto">
+              <button class="btn btn-outline-dark read-more-btn" data-bs-toggle="modal" data-bs-target="#newsModal"
+                data-title="Spring 2023 Must-Have Fashion Trends"
+                data-content="This spring is all about bold colors, oversized silhouettes, and sustainable fabrics. Our fashion editors spotted these trends on runways from New York to Paris. The 'quiet luxury' trend continues with minimalist designs in premium fabrics, while the younger generation embraces Y2K nostalgia with low-rise jeans and cropped tops."
+                data-image="https://i.postimg.cc/9fV7QjJ9/news2.jpg">
+                Read More
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- News 3 -->
+      <div class="col-md-4">
+        <div class="card border-0 h-100 shadow-sm">
+          <img src="https://i.postimg.cc/3x3YvxJY/news3.jpg" class="card-img-top img-news" alt="Sustainable Fashion">
+          <div class="card-body d-flex flex-column">
+            <div class="d-flex justify-content-between mb-2">
+              <span class="badge bg-info">Sustainability</span>
+              <span class="text-muted"><i class='bx bxs-calendar'></i> Apr 18, 2022</span>
+            </div>
+            <h4 class="mb-3">Sustainable Fashion: Brands Making a Difference</h4>
+            <p class="text-muted mb-4">How to build an eco-friendly wardrobe without sacrificing style.</p>
+            <div class="mt-auto">
+              <button class="btn btn-outline-dark read-more-btn" data-bs-toggle="modal" data-bs-target="#newsModal"
+                data-title="Sustainable Fashion: Brands Making a Difference"
+                data-content="The fashion industry is undergoing a green revolution, with these 8 brands leading the way in sustainable practices. From upcycled materials to carbon-neutral production, discover how you can reduce your fashion footprint. We also include tips for extending the life of your current wardrobe through proper care and styling."
+                data-image="https://i.postimg.cc/3x3YvxJY/news3.jpg">
+                Read More
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+        
   </div>
 </section>
 
+<!-- News Modal -->
+<div class="modal fade" id="newsModal" tabindex="-1" aria-labelledby="newsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newsModalLabel">News Title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <img src="" class="img-fluid mb-4 rounded" id="modalImage" alt="">
+        <p id="modalContent"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-dark" id="shareBtn">
+          <i class='bx bx-share-alt'></i> Share
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Coming Soon Modal -->
+<div class="modal fade" id="comingSoonModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-warning">
+        <h5 class="modal-title">Coming Soon!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center p-4">
+        <i class="bi bi-hourglass-split display-4 text-warning mb-3"></i>
+        <h4 class="mb-3">Exciting New Features Coming Soon</h4>
+        <p class="mb-4">We're working hard to bring you an enhanced shopping experience. Stay tuned for updates!</p>
+        <div class="progress mb-3">
+          <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: 75%"></div>
+        </div>
+        <p class="small text-muted">Estimated launch: December 2023</p>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Got It!</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Footer -->
 <footer class="bg-dark text-white py-5">
@@ -359,6 +495,50 @@
     scrollBtn.style.display = window.scrollY > 300 ? "block" : "none";
   };
   scrollBtn.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+
+  // News Modal Script
+  document.addEventListener('DOMContentLoaded', function() {
+    const newsModal = new bootstrap.Modal(document.getElementById('newsModal'));
+    const comingSoonModal = new bootstrap.Modal(document.getElementById('comingSoonModal'));
+    
+    // Set modal content when read more is clicked
+    document.querySelectorAll('.read-more-btn').forEach(button => {
+      button.addEventListener('click', function() {
+        document.getElementById('newsModalLabel').textContent = this.dataset.title;
+        document.getElementById('modalContent').textContent = this.dataset.content;
+        document.getElementById('modalImage').src = this.dataset.image;
+      });
+    });
+    
+    // Share button functionality
+    document.getElementById('shareBtn').addEventListener('click', function() {
+      if (navigator.share) {
+        navigator.share({
+          title: document.getElementById('newsModalLabel').textContent,
+          text: document.getElementById('modalContent').textContent.substring(0, 100) + '...',
+          url: window.location.href
+        }).catch(err => {
+          console.log('Error sharing:', err);
+        });
+      } else {
+        // Fallback for browsers that don't support Web Share API
+        alert('Share this article: ' + window.location.href);
+      }
+    });
+    
+    // Show coming soon popup after 3 seconds
+    setTimeout(() => {
+      comingSoonModal.show();
+    }, 3000);
+    
+    // Show coming soon popup when clicking Buy Now buttons
+    document.querySelectorAll('.btn-dark.w-100').forEach(button => {
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        comingSoonModal.show();
+      });
+    });
+  });
 </script>
 </body>
 </html>
