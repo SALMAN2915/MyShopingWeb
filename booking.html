@@ -4,13 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Confirm Booking - ShopCloth & Jewelry</title>
-
-  <!-- ✅ Bootstrap 5 & Icons -->
+  
+  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  
+  <!-- Boxicons CSS -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  
+  <!-- Bootstrap Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"/>
+  
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="css/style.css"/>
-
+  
   <style>
+    /* Loader styles */
     #loader {
       transition: opacity 0.5s ease;
     }
@@ -18,101 +26,575 @@
       opacity: 0;
       pointer-events: none;
     }
+    
+    /* Consistent container sizing */
+    .section-container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+    
+    /* Your original styles */
+    .top-txt {
+      background-color: #f8f9fa;
+      padding: 10px 0;
+    }
+    .head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .sing_in_up a {
+      margin-left: 15px;
+      text-decoration: none;
+      color: #333;
+    }
+    
+    /* Navbar styles */
+    .navbar {
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    /* Booking section */
+    .booking-hero {
+      background: url('https://i.postimg.cc/t403yfn9/home2.jpg') center/cover no-repeat;
+      color: white;
+      padding: 100px 0;
+      text-align: center;
+      margin-bottom: 40px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+    
+    /* Product card */
+    .product-card {
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    /* Form styling */
+    .booking-form {
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      padding: 30px;
+      background: white;
+    }
+    .form-label {
+      font-weight: 600;
+      color: #343a40;
+    }
+    .form-control {
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 15px;
+    }
+    .btn-booking {
+      background-color: #343a40;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: 600;
+      width: 100%;
+      transition: all 0.3s;
+    }
+    .btn-booking:hover {
+      background-color: #212529;
+      transform: translateY(-2px);
+    }
+    
+    /* Alert styling */
+    #form-alert {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1100;
+      width: 350px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    #form-alert.show {
+      opacity: 1;
+    }
+    
+    /* Section headings */
+    h2 {
+      color: #343a40;
+      font-weight: 700;
+      position: relative;
+      padding-bottom: 15px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    h2:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: #343a40;
+    }
+    
+    /* Modal styling */
+    .modal-header {
+      background-color: #343a40;
+      color: white;
+    }
+    .modal-success .modal-header {
+      background-color: #28a745;
+    }
+    
+    /* Footer styles */
+    footer {
+      background-color: #343a40;
+      color: white;
+      padding: 40px 0 20px;
+    }
+    footer a {
+      color: #adb5bd;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 8px;
+    }
+    footer a:hover {
+      color: white;
+    }
+
+    /* Payment Method Styles */
+    .upi-qr-container {
+      max-width: 280px;
+      margin: 20px auto;
+      padding: 15px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border: 1px solid #eee;
+    }
+    .payment-method-card {
+      border: 2px solid #dee2e6;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 15px;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .payment-method-card:hover, .payment-method-card.active {
+      border-color: #0d6efd;
+      background-color: #f8faff;
+    }
+    .confirmation-panel {
+      background: #f8f9fa;
+      border-left: 4px solid #28a745;
+      padding: 20px;
+      margin-top: 25px;
+      border-radius: 8px;
+    }
+    .app-icon {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      margin: 5px;
+      transition: transform 0.2s;
+    }
+    .app-icon:hover {
+      transform: scale(1.1);
+    }
+    #screenshot-preview {
+      max-width: 100%;
+      max-height: 200px;
+      margin-top: 10px;
+      display: none;
+    }
+    .whatsapp-btn {
+      background-color: #25D366;
+      color: white;
+    }
+    .whatsapp-btn:hover {
+      background-color: #128C7E;
+      color: white;
+    }
+    .app-badge {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background-color: #0d6efd;
+      color: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .app-icon-container {
+      position: relative;
+      display: inline-block;
+    }
+    .card-icon {
+      font-size: 1.5rem;
+      margin-right: 10px;
+    }
+    .card-number-group {
+      display: flex;
+      gap: 10px;
+    }
+    .card-number-group input {
+      text-align: center;
+    }
+    #card-payment-form {
+      display: none;
+    }
+    .payment-method-icon {
+      font-size: 1.2rem;
+      margin-right: 8px;
+      color: #0d6efd;
+    }
+    #payment-section {
+      display: none;
+      animation: fadeIn 0.4s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
-
 <body>
+
 <!-- Loader -->
 <div id="loader" class="d-flex justify-content-center align-items-center bg-white position-fixed top-0 start-0 w-100 h-100" style="z-index: 1050;">
-  <div class="spinner-border text-warning" role="status" style="width: 4rem; height: 4rem;">
+  <div class="spinner-border text-dark" role="status" style="width: 4rem; height: 4rem;">
     <span class="visually-hidden">Loading...</span>
   </div>
 </div>
 
+<!-- Top Text Section -->
+<section class="top-txt">
+  <div class="head container">
+    <div class="head-txt">
+      <p>Welcome, and thank you for visiting my website!</p>
+    </div>
+    <div class="sing_in_up">
+      <!-- <a href="#">SIGN IN</a>
+      <a href="#">SIGN UP</a> -->
+    </div>
+  </div>
+</section>
+
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
   <div class="container">
-    <a class="navbar-brand fw-bold" href="#"><i class="bi bi-gem"></i> ShopCloth & Jewelry</a>
+    <a class="navbar-brand" href="index.html">
+      <img src="https://i.postimg.cc/TP6JjSTt/logo.webp" alt="Logo" height="40">
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarContent">
-      <ul class="navbar-nav ms-auto me-3 mb-2 mb-lg-0">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="clothing.html">Shop</a></li>
+        <li class="nav-item"><a class="nav-link" href="#news">Blog</a></li>
         <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
       </ul>
-      <a href="login.html" class="btn btn-outline-light me-2">Login</a>
-      <a href="signup.html" class="btn btn-warning">Signup</a>
     </div>
   </div>
 </nav>
 
+<!-- Hero Section -->
+<div class="booking-hero">
+  <div class="section-container">
+    <h1 class="display-5 fw-bold">Complete Your Booking</h1>
+    <p class="lead">Finalize your purchase with your details</p>
+  </div>
+</div>
+
 <!-- Booking Section -->
-<div class="container my-5">
-  <h2 class="mb-4 text-center text-success">Confirm Your Booking</h2>
-  <div class="row">
+<div class="section-container my-5">
+  <h2>Confirm Your Booking</h2>
+  <div class="row g-4">
     <!-- Product Summary -->
-    <div class="col-md-5 mb-4" id="product-summary"></div>
+    <div class="col-lg-5">
+      <div class="card product-card h-100" id="product-summary">
+        <!-- Product details will be loaded here -->
+      </div>
+    </div>
 
     <!-- Booking Form -->
-    <div class="col-md-7">
-      <div id="form-alert" class="alert d-none" role="alert"></div>
+    <div class="col-lg-7">
+      <div class="booking-form">
+        <form id="booking-form">
+          <div class="mb-3">
+            <label for="name" class="form-label">Full Name</label>
+            <input type="text" id="name" class="form-control" placeholder="Enter your full name" required>
+          </div>
+          
+          <div class="mb-3">
+            <label for="phone" class="form-label">Phone Number</label>
+            <input type="tel" id="phone" class="form-control" placeholder="Enter your phone number" required onchange="validatePhone(this)">
+            <div class="invalid-feedback">Phone number must be 10 digits.</div>
+          </div>
+          
+          <div class="mb-3">
+            <label for="email" class="form-label">Email Address</label>
+            <input type="email" id="email" class="form-control" placeholder="Enter your email address" required>
+          </div>
+          
+          <div class="mb-3">
+            <label for="address" class="form-label">Shipping Address</label>
+            <textarea id="address" class="form-control" rows="3" placeholder="Enter your shipping address" required></textarea>
+          </div>
+          
+          <div class="mb-3">
+            <label for="note" class="form-label">Additional Notes (optional)</label>
+            <textarea id="note" class="form-control" rows="2" placeholder="Any special requests or notes"></textarea>
+          </div>
+          
+          <button type="button" id="proceed-to-payment" class="btn btn-booking">
+            <i class="bi bi-credit-card"></i> Proceed to Payment
+          </button>
+        </form>
+      </div>
 
-      <form id="booking-form" class="p-4 border rounded shadow-sm bg-light">
-        <div class="mb-3">
-          <label for="name" class="form-label">Full Name</label>
-          <input type="text" id="name" class="form-control" placeholder="Enter your full name" required />
-        </div>          
-
-        <div class="mb-3">
-          <label for="phone" class="form-label">Phone Number</label>
-          <input type="tel" id="phone" class="form-control" placeholder="Enter your phone number" required onchange="validatePhone(this)" />
-          <div class="invalid-feedback">Phone number must be 10 digits.</div>
+      <!-- Payment Section (hidden initially) -->
+      <div id="payment-section" class="mt-4">
+        <div class="card">
+          <div class="card-header bg-light">
+            <h5><i class="bi bi-wallet2"></i> Payment Method</h5>
+          </div>
+          <div class="card-body">
+            <!-- Payment Method Selection -->
+            <div class="mb-4">
+              <h5>Select Payment Method</h5>
+              <div class="d-flex flex-column gap-3">
+                <!-- UPI Payment Option -->
+                <div class="payment-method-card active" onclick="selectPaymentMethod('upi')" id="upi-method">
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-phone payment-method-icon"></i>
+                    <div>
+                      <h5 class="mb-1">UPI Payment</h5>
+                      <p class="text-muted mb-0">Pay instantly using any UPI app</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Card Payment Option
+                <div class="payment-method-card" onclick="selectPaymentMethod('card')" id="card-method">
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-credit-card payment-method-icon"></i>
+                    <div>
+                      <h5 class="mb-1">Credit/Debit Card</h5>
+                      <p class="text-muted mb-0">Pay using Visa, Mastercard, etc.</p>
+                    </div>
+                  </div>
+                </div> -->
+              </div>
+            </div>
+            
+            <!-- UPI Payment Section -->
+            <div id="upi-payment-section">
+              <div class="mt-4 text-center">
+                <div class="upi-qr-container">
+                  <img id="upi-qr-image" src="" 
+                       alt="UPI QR Code" class="img-fluid mb-3">
+                  <p class="fw-bold mb-1">Scan to pay</p>
+                  <p class="text-muted small">Amount will be auto-filled</p>
+                </div>
+                
+                <div class="my-4">
+                  <div class="input-group">
+                    <input type="text" class="form-control fw-bold text-center" 
+                           id="upi-id" value="7518240401@ptyes" readonly>
+                    <button class="btn btn-outline-primary" onclick="copyUpiId()">
+                      <i class="bi bi-clipboard"></i> Copy
+                    </button>
+                  </div>
+                  <small class="text-muted">Paste this in any UPI app</small>
+                </div>
+                
+                <div class="d-flex justify-content-center flex-wrap mb-4">
+                  <div class="app-icon-container">
+                    <a href="#" class="m-2" onclick="openUpiApp('phonepe')">
+                      <img src="https://logos-download.com/wp-content/uploads/2021/01/PhonePe_Logo_icon.png" 
+                           alt="PhonePe" class="app-icon">
+                    </a>
+                    <span class="app-badge">1</span>
+                  </div>
+                  <div class="app-icon-container">
+                    <a href="#" class="m-2" onclick="openUpiApp('gpay')">
+                      <img src="https://logos-download.com/wp-content/uploads/2020/06/Google_Pay_Logo.png" 
+                           alt="Google Pay" class="app-icon">
+                    </a>
+                    <span class="app-badge">2</span>
+                  </div>
+                  <div class="app-icon-container">
+                    <a href="#" class="m-2" onclick="openUpiApp('paytm')">
+                      <img src="https://logos-download.com/wp-content/uploads/2020/10/Paytm_Logo_icon.png" 
+                           alt="Paytm" class="app-icon">
+                    </a>
+                    <span class="app-badge">3</span>
+                  </div>
+                  <div class="app-icon-container">
+                    <a href="#" class="m-2" onclick="openUpiApp('bhim')">
+                      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/BHIM_Logo.svg/1200px-BHIM_Logo.svg.png" 
+                           alt="BHIM" class="app-icon">
+                    </a>
+                    <span class="app-badge">4</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Card Payment Section -->
+            <div id="card-payment-form">
+              <form id="card-form">
+                <div class="mb-3">
+                  <label class="form-label">Card Number</label>
+                  <div class="card-number-group">
+                    <input type="text" class="form-control" maxlength="4" placeholder="1234" required>
+                    <input type="text" class="form-control" maxlength="4" placeholder="5678" required>
+                    <input type="text" class="form-control" maxlength="4" placeholder="9012" required>
+                    <input type="text" class="form-control" maxlength="4" placeholder="3456" required>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label">Expiry Date</label>
+                    <input type="text" class="form-control" placeholder="MM/YY" required>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label">CVV</label>
+                    <input type="text" class="form-control" maxlength="3" placeholder="123" required>
+                  </div>
+                </div>
+                
+                <div class="mb-3">
+                  <label class="form-label">Cardholder Name</label>
+                  <input type="text" class="form-control" id="card-name" required>
+                </div>
+                
+                <button type="button" class="btn btn-primary w-100" onclick="processCardPayment()">
+                  <i class="bi bi-lock"></i> Pay ₹<span id="card-amount"></span>
+                </button>
+              </form>
+            </div>
+            
+            <!-- Confirmation Panel (common for both methods) -->
+            <div class="confirmation-panel">
+              <h5><i class="bi bi-check-circle-fill text-success"></i> Payment Confirmation</h5>
+              <p>After payment, please share screenshot:</p>
+              
+              <div class="mb-3">
+                <label for="screenshot-upload" class="form-label">Upload Payment Screenshot</label>
+                <input class="form-control" type="file" id="screenshot-upload" accept="image/*">
+                <img id="screenshot-preview" src="#" alt="Screenshot preview">
+              </div>
+              
+              <div class="d-grid gap-2">
+                <button id="whatsapp-btn" class="btn whatsapp-btn" onclick="sendViaWhatsApp()">
+                  <i class="bi bi-whatsapp"></i> Share via WhatsApp
+                </button>
+                <button class="btn btn-outline-primary" onclick="completeOrder()">
+                  <i class="bi bi-check-circle"></i> I've Completed Payment
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <div class="mb-3">
-          <label for="email" class="form-label">Email Address</label>
-          <input type="email" id="email" class="form-control" placeholder="Enter your email address" required />
-        </div>
-
-        <div class="mb-3">
-          <label for="address" class="form-label">Shipping Address</label>
-          <textarea id="address" class="form-control" rows="3" placeholder="Enter your shipping address" required></textarea>
-        </div>
-
-        <div class="mb-3">
-          <label for="note" class="form-label">Additional Notes (optional)</label>
-          <textarea id="note" class="form-control" rows="2" placeholder="Any special requests or notes"></textarea>
-        </div>
-
-        <button type="submit" class="btn btn-success w-100">Submit Booking</button>
-      </form>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- Footer -->
-<footer class="bg-dark text-light py-4 text-center">
+<footer class="bg-dark text-white py-5">
   <div class="container">
-    <p class="mb-0">&copy; 2025 ShopCloth & Jewelry. All rights reserved.</p>
-    <p class="mb-0"><i class="bi bi-envelope"></i> support@shopclothjewelry.com</p>
+    <div class="row g-4">
+      <div class="col-md-3">
+        <img src="https://i.postimg.cc/htGyQ4JB/footer-logo.png" alt="logo" class="mb-3">
+        <p>The customer is at the heart of our unique business model, which includes design.</p>
+        <img src="https://i.postimg.cc/Nj9dgJ98/cards.png" alt="cards" class="img-fluid">
+      </div>
+      <div class="col-md-3">
+        <h5 class="mb-4">SHOPPING</h5>
+        <a href="clothing.html" class="d-block mb-2">Clothing Store</a>
+        <a href="#" class="d-block mb-2">Trending Shoes</a>
+        <a href="jewelry.html" class="d-block mb-2">Accessories</a>
+        <a href="#" class="d-block mb-2">Sale</a>
+      </div>
+      <div class="col-md-3">
+        <h5 class="mb-4">SHOPPING</h5>
+        <a href="contact.html" class="d-block mb-2">Contact Us</a>
+        <a href="https://payment-method-sb.netlify.app/" target="_blank" class="d-block mb-2">Payment Method</a>
+        <a href="https://delivery-status-sb.netlify.app/" target="_blank" class="d-block mb-2">Delivery</a>
+        <a href="https://codepen.io/sandeshbodake/full/Jexxrv" target="_blank" class="d-block mb-2">Return and Exchange</a>
+      </div>
+      <div class="col-md-3">
+        <h5 class="mb-4">NEWSLETTER</h5>
+        <p class="mb-3">Be the first to know about new arrivals, look books, sales & promos!</p>
+        <div class="input-group mb-3">
+          <input type="email" class="form-control" placeholder="Your Email">
+          <button class="btn btn-outline-light" type="button"  style="height: 50px; z-index: 10;"><i class='bx bx-envelope'></i></button>
+        </div>
+      </div>
+    </div>
+    <hr class="my-4">
+    <div class="text-center">
+      <p class="mb-0">Design and Code by code.sanket</p>
+    </div>
   </div>
 </footer>
 
 <!-- Booking Success Modal -->
-<div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+<div class="modal fade" id="bookingModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
+      <div class="modal-header bg-dark">
+        <h5 class="modal-title">Booking Confirmed</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <i class="bi bi-check-circle-fill text-success" style="font-size: 3rem;"></i>
+        <h4 class="my-3">Thank you for your booking!</h4>
+        <p>We've received your request successfully.</p>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Continue Shopping</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Payment Success Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
       <div class="modal-header bg-success text-white">
-        <h5 class="modal-title" id="bookingModalLabel">Booking Confirmed</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        <h5 class="modal-title">Payment Received!</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        Thank you for your booking! We've received your request successfully.
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-success" data-bs-dismiss="modal">OK</button>
+      <div class="modal-body text-center py-4">
+        <i class="bi bi-check-circle-fill text-success" style="font-size: 4rem;"></i>
+        <h3 class="my-3">Thank You!</h3>
+        <p>We've received your payment details. Our team will verify and contact you shortly.</p>
+        <div class="d-grid gap-2 mt-4">
+          <button class="btn btn-primary" data-bs-dismiss="modal">
+            <i class="bi bi-arrow-left"></i> Continue Shopping
+          </button>
+          <a href="https://wa.me/917518240401" class="btn btn-success">
+            <i class="bi bi-whatsapp"></i> Need Help? WhatsApp Us
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -127,6 +609,7 @@ const scriptURL = "https://script.google.com/macros/s/AKfycbwgsKf0jmzE-voCpw4Sm5
 const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT7GEKaqHGSMO9mD9RZTkuNzCojEbETn1MSHwZ7xSB1lBjq3l0EbfSyok-rDMppUwotPBU4_y_gJaNn/pub?output=csv";
 
 let currentProduct = null;
+let selectedPaymentMethod = 'upi'; // Default to UPI
 
 function getProductIdFromURL() {
   const params = new URLSearchParams(window.location.search);
@@ -148,11 +631,14 @@ function loadProductSummary() {
             <div class="card-body">
               <h5 class="card-title">${product.name}</h5>
               <p class="card-text"><strong>Category:</strong> ${product.category}</p>
-              <p class="card-text"><strong>Price:</strong> ${product.price}</p>
+              <p class="card-text"><strong>Price:</strong> ₹${product.price}</p>
               <p class="card-text">${product.description}</p>
             </div>
           </div>
         `;
+        
+        // Update payment amount
+        document.getElementById("card-amount").textContent = product.price;
       } else {
         document.getElementById("product-summary").innerHTML = "<p class='text-danger'>Product not found.</p>";
       }
@@ -160,15 +646,166 @@ function loadProductSummary() {
   });
 }
 
-document.getElementById("booking-form").addEventListener("submit", function (e) {
-  e.preventDefault();
+// Payment Method Functions
+function selectPaymentMethod(method) {
+  selectedPaymentMethod = method;
+  
+  // Update UI
+  document.getElementById('upi-method').classList.remove('active');
+  document.getElementById('card-method').classList.remove('active');
+  document.getElementById('upi-payment-section').style.display = 'none';
+  document.getElementById('card-payment-form').style.display = 'none';
+  
+  if (method === 'upi') {
+    document.getElementById('upi-method').classList.add('active');
+    document.getElementById('upi-payment-section').style.display = 'block';
+    updateUpiQrCode();
+  } else {
+    document.getElementById('card-method').classList.add('active');
+    document.getElementById('card-payment-form').style.display = 'block';
+  }
+}
 
+function updateUpiQrCode() {
+  if (!currentProduct) return;
+  
+  const upiId = '7518240401@ptyes';
+  const amount = currentProduct.price;
+  const productName = currentProduct.name.replace(/\s+/g, '%20');
+  
+  // UPI payment URL with all parameters
+  const upiUrl = `upi://pay?pa=${upiId}&pn=ShopEasy&am=${amount}&tn=Payment%20for%20${productName}&cu=INR`;
+  
+  // Generate QR code
+  const qrImage = document.getElementById('upi-qr-image');
+  qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiUrl)}`;
+}
+
+function copyUpiId() {
+  const upiId = document.getElementById('upi-id');
+  upiId.select();
+  document.execCommand('copy');
+  
+  // Show feedback
+  const originalText = event.target.innerHTML;
+  event.target.innerHTML = '<i class="bi bi-check"></i> Copied!';
+  setTimeout(() => {
+    event.target.innerHTML = originalText;
+  }, 2000);
+}
+
+function openUpiApp(app) {
+  if (!currentProduct) return;
+  
+  const upiId = '7518240401@ptyes'; 
+  const amount = currentProduct.price;
+  const productName = currentProduct.name.replace(/\s+/g, '%20');
+  
+  // Common UPI parameters
+  const params = new URLSearchParams();
+  params.set('pa', upiId);
+  params.set('pn', 'ShopEasy');
+  params.set('am', amount);
+  params.set('tn', `Payment for ${productName}`);
+  params.set('cu', 'INR');
+  
+  let deepLink = '';
+  switch(app) {
+    case 'phonepe':
+      deepLink = `phonepe://upi/pay?${params.toString()}`;
+      break;
+    case 'gpay':
+      deepLink = `tez://upi/pay?${params.toString()}`;
+      break;
+    case 'paytm':
+      deepLink = `paytmmp://upi/pay?${params.toString()}`;
+      break;
+    case 'bhim':
+      deepLink = `bhim://upi/pay?${params.toString()}`;
+      break;
+    default:
+      deepLink = `upi://pay?${params.toString()}`;
+  }
+  
+  // Try to open app
+  window.location.href = deepLink;
+  
+  // Fallback to Play Store after delay if app not installed
+  setTimeout(() => {
+    if (!document.hidden) {
+      window.location.href = getAppStoreLink(app);
+    }
+  }, 500);
+}
+
+function processCardPayment() {
+  // In a real implementation, you would:
+  // 1. Validate card details
+  // 2. Process payment through a payment gateway
+  // 3. Handle the response
+  
+  // For demo purposes, we'll just show a success message
+  alert('Card payment processed successfully! Please upload the payment confirmation screenshot.');
+}
+
+function getAppStoreLink(app) {
+  switch(app) {
+    case 'phonepe': return 'https://play.google.com/store/apps/details?id=com.phonepe.app';
+    case 'gpay': return 'https://play.google.com/store/apps/details?id=com.google.android.apps.nbu.paisa.user';
+    case 'paytm': return 'https://play.google.com/store/apps/details?id=net.one97.paytm';
+    case 'bhim': return 'https://play.google.com/store/apps/details?id=in.org.npci.upiapp';
+    default: return 'https://play.google.com/store/search?q=upi%20app';
+  }
+}
+
+function sendViaWhatsApp() {
+  const name = document.getElementById('name').value;
+  const phone = document.getElementById('phone').value;
+  const productName = currentProduct.name;
+  const amount = currentProduct.price;
+  
+  if (!name || !phone) {
+    alert('Please fill all your details first');
+    return;
+  }
+  
+  const fileInput = document.getElementById('screenshot-upload');
+  if (fileInput.files.length === 0) {
+    alert('Please upload your payment screenshot first');
+    return;
+  }
+  
+  // In a real app, you would upload the file to a server and get a URL
+  // For demo purposes, we'll just open WhatsApp with a message
+  const message = `Hi ShopEasy,\n\nI've made payment for ${productName} (₹${amount}) via ${selectedPaymentMethod === 'upi' ? 'UPI' : 'Credit/Debit Card'}.\n\nMy details:\nName: ${name}\nPhone: ${phone}\n\nPlease find the payment screenshot attached.`;
+  const whatsappUrl = `https://wa.me/917518240401?text=${encodeURIComponent(message)}`;
+  
+  window.open(whatsappUrl, '_blank');
+}
+
+function completeOrder() {
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const phone = document.getElementById('phone').value;
+  const address = document.getElementById('address').value;
+  
+  if (!name || !email || !phone || !address) {
+    alert('Please fill all your details first');
+    return;
+  }
+  
+  const fileInput = document.getElementById('screenshot-upload');
+  if (fileInput.files.length === 0) {
+    alert('Please upload your payment screenshot first');
+    return;
+  }
+  
   const form = new FormData();
-  form.append("name", document.getElementById("name").value.trim());
-  form.append("email", document.getElementById("email").value.trim());
-  form.append("phone", document.getElementById("phone").value.trim());
-  form.append("address", document.getElementById("address").value.trim());
-  form.append("note", document.getElementById("note").value.trim());
+  form.append("name", name);
+  form.append("email", email);
+  form.append("phone", phone);
+  form.append("address", address);
+  form.append("note", document.getElementById('note').value.trim());
 
   if (currentProduct) {
     form.append("productName", currentProduct.name);
@@ -183,56 +820,64 @@ document.getElementById("booking-form").addEventListener("submit", function (e) 
   })
   .then(response => response.text())
   .then(result => {
- const alertBox = document.getElementById("form-alert");
-
-if (result === "Success") {
-  const modal = new bootstrap.Modal(document.getElementById("bookingModal"));
-  modal.show();
-  document.getElementById("booking-form").reset();
-} else {
-  alert("Error submitting booking: " + result);
+    if (result === "Success") {
+      const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+      successModal.show();
+    } else {
+      const alertBox = document.getElementById("form-alert");
+      alertBox.className = "alert alert-danger show";
+      alertBox.querySelector("#alert-message").textContent = "❌ Error submitting booking. Please try again.";
+      setTimeout(() => {
+        alertBox.classList.remove("show");
+      }, 5000);
+    }
+  })
+  .catch(error => {
+    const alertBox = document.getElementById("form-alert");
+    alertBox.className = "alert alert-danger show";
+    alertBox.querySelector("#alert-message").textContent = "❌ Error submitting booking. Please try again.";
+    setTimeout(() => {
+      alertBox.classList.remove("show");
+    }, 5000);
+  });
 }
 
-  })
-  alertBox.className = "alert alert-danger";
-alertBox.textContent = "❌ Error submitting booking. Please try again.";
-alertBox.classList.remove("d-none");
+// Proceed to payment button
+document.getElementById('proceed-to-payment').addEventListener('click', function() {
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const phone = document.getElementById('phone').value;
+  const address = document.getElementById('address').value;
+  
+  if (!name || !email || !phone || !address) {
+    alert('Please fill all your details to proceed');
+    return;
+  }
+  
+  // Show payment section with animation
+  document.getElementById('payment-section').style.display = 'block';
+  
+  // Initialize UPI QR code
+  updateUpiQrCode();
+  
+  // Scroll to payment section smoothly
+  document.getElementById('payment-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
 
-  });
+// Setup screenshot preview
+document.getElementById('screenshot-upload').addEventListener('change', function(event) {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const preview = document.getElementById('screenshot-preview');
+      preview.src = e.target.result;
+      preview.style.display = 'block';
+    }
+    reader.readAsDataURL(file);
+  }
+});
 
-window.addEventListener("DOMContentLoaded", loadProductSummary);
-</script>
-<script>
-  window.addEventListener("load", function () {
-    setTimeout(function () {
-      const loader = document.getElementById("loader");
-      loader.classList.add("hide");
-      setTimeout(() => {
-        loader.style.display = "none";
-      }, 500); // wait for fade-out transition
-    }, 2000); // keep loader for at least 2 seconds
-  });
-</script>
-
-<!-- Booking Success Modal -->
-<div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header bg-success text-white">
-        <h5 class="modal-title" id="bookingModalLabel">Booking Confirmed</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Thank you for your booking! We've received your request successfully.
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-success" data-bs-dismiss="modal">OK</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
 function validatePhone(input) {
     const isValid = /^[0-9]{10}$/.test(input.value);
     if (!isValid) {
@@ -242,7 +887,24 @@ function validatePhone(input) {
       input.classList.remove('is-invalid');
       input.classList.add('is-valid');
     }
-  }
+}
+
+window.addEventListener("DOMContentLoaded", function() {
+  loadProductSummary();
+  
+  // Initialize payment method to UPI
+  selectPaymentMethod('upi');
+});
+
+window.addEventListener("load", function () {
+  setTimeout(function () {
+    const loader = document.getElementById("loader");
+    loader.classList.add("hide");
+    setTimeout(() => {
+      loader.style.display = "none";
+    }, 500);
+  }, 2000);
+});
 </script>
 </body>
 </html>
